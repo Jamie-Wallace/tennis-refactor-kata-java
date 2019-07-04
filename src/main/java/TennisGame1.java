@@ -14,7 +14,9 @@ public class TennisGame1 implements TennisGame {
 
     public String getScores() {
         StringBuilder score;
-        if (scoresAreEqual()) {
+        if (isDeuce()) {
+            score = new StringBuilder("Deuce");
+        } else if (scoresAreEqual()) {
             score = getEqualScore();
         } else if (atEndGame()) {
             score = new StringBuilder(getEndGameScore());
@@ -30,6 +32,10 @@ public class TennisGame1 implements TennisGame {
 
     private boolean scoresAreEqual() {
         return scores[0] == scores[1];
+    }
+
+    private boolean isDeuce() {
+        return (scoresAreEqual() && scores[0] == 4);
     }
 
     private String getGameScore() {
