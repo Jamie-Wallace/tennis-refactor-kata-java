@@ -18,7 +18,7 @@ public class TennisGame1 implements TennisGame {
         } else if (atEndGame()) {
             score = getEndGameScore();
         } else {
-            score = getGameScore();
+            score = new StringBuilder(getGameScore());
         }
         return score.toString();
     }
@@ -31,15 +31,8 @@ public class TennisGame1 implements TennisGame {
         return scores[0] == scores[1];
     }
 
-    private StringBuilder getGameScore() {
-        StringBuilder score = new StringBuilder();
-        int tempScore;
-        for (int i = 0; i < 2; i++) {
-            tempScore = scores[i];
-            if (i == 1) score.append("-");
-            score.append(getPointName(tempScore));
-        }
-        return score;
+    private String getGameScore() {
+        return getPointName(scores[0]) + "-" + getPointName(scores[1]);
     }
 
     private String getPointName(int pointValue) {
