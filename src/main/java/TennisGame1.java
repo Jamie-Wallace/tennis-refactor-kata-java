@@ -1,15 +1,18 @@
+import java.util.ArrayList;
+
 public class TennisGame1 implements TennisGame {
     private int[] scores = {0, 0};
+    private ArrayList<String> players;
     private String[] pointNames = {"Love", "Fifteen", "Thirty", "Forty"};
 
-    TennisGame1() {
+    TennisGame1(String player1, String player2) {
+        players  = new ArrayList<String>();
+        players.add(player1);
+        players.add(player2);
     }
 
     public void wonPoint(String playerName) {
-        if (playerName.equals("player1"))
-            scores[0]++;
-        else
-            scores[1]++;
+        scores[players.indexOf(playerName)]++;
     }
 
     public String getScores() {
@@ -33,7 +36,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     private boolean isDeuce() {
-        return (scoresAreEqual() && scores[0] == 4);
+        return (scoresAreEqual() && scores[0] >= 3);
     }
 
     private String getGameScore() {
@@ -49,15 +52,6 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String getEqualScore() {
-        switch (scores[0]) {
-            case 0:
-                return "Love-All";
-            case 1:
-                return  "Fifteen-All";
-            case 2:
-                return "Thirty-All";
-            default:
-                return "Deuce";
-        }
+        return  pointNames[scores[0]] + "-All";
     }
 }
