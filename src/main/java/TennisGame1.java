@@ -34,12 +34,9 @@ public class TennisGame1 implements TennisGame {
     private StringBuilder getGameScore() {
         StringBuilder score = new StringBuilder();
         int tempScore;
-        for (int i = 1; i < 3; i++) {
-            if (i == 1) tempScore = scores[0];
-            else {
-                score.append("-");
-                tempScore = scores[1];
-            }
+        for (int i = 0; i < 2; i++) {
+            tempScore = scores[i];
+            if (i == 1) score.append("-");
             switch (tempScore) {
                 case 0:
                     score.append("Love");
