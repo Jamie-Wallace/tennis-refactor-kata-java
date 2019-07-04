@@ -1,5 +1,5 @@
 public class TennisGame1 implements TennisGame {
-    private int[] scores = {0,0};
+    private int[] scores = {0, 0};
 
     TennisGame1() {
     }
@@ -37,22 +37,24 @@ public class TennisGame1 implements TennisGame {
         for (int i = 0; i < 2; i++) {
             tempScore = scores[i];
             if (i == 1) score.append("-");
-            switch (tempScore) {
-                case 0:
-                    score.append("Love");
-                    break;
-                case 1:
-                    score.append("Fifteen");
-                    break;
-                case 2:
-                    score.append("Thirty");
-                    break;
-                case 3:
-                    score.append("Forty");
-                    break;
-            }
+            score.append(getPointName(tempScore));
         }
         return score;
+    }
+
+    private String getPointName(int pointValue) {
+        switch (pointValue) {
+            case 0:
+                return "Love";
+            case 1:
+                return "Fifteen";
+            case 2:
+                return "Thirty";
+            case 3:
+                return "Forty";
+            default:
+                return "";
+        }
     }
 
     private StringBuilder getEndGameScore() {
