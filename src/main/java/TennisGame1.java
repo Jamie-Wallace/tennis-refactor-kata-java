@@ -1,52 +1,46 @@
 public class TennisGame1 implements TennisGame {
-    
-    private int m_score1 = 0;
-    private int m_score2 = 0;
+    private int[] scores = {0,0};
 
     TennisGame1() {
     }
 
     public void wonPoint(String playerName) {
         if (playerName.equals("player1"))
-            m_score1 += 1;
+            scores[0]++;
         else
-            m_score2 += 1;
+            scores[1]++;
     }
 
-    public String getScore() {
+    public String getScores() {
         StringBuilder score;
-        if (scoresAreEqual())
-        {
+        if (scoresAreEqual()) {
             score = getEqualScore();
-        }
-        else if (atEndGame())
-        {
+        } else if (atEndGame()) {
             score = getEndGameScore();
-        }
-        else
-        {
+        } else {
             score = getGameScore();
         }
         return score.toString();
     }
 
     private boolean atEndGame() {
-        return m_score1>=4 || m_score2>=4;
+        return scores[0] >= 4 || scores[1] >= 4;
     }
 
     private boolean scoresAreEqual() {
-        return m_score1==m_score2;
+        return scores[0] == scores[1];
     }
 
     private StringBuilder getGameScore() {
         StringBuilder score = new StringBuilder();
         int tempScore;
-        for (int i = 1; i<3; i++)
-        {
-            if (i==1) tempScore = m_score1;
-            else { score.append("-"); tempScore = m_score2;}
-            switch(tempScore)
-            {
+        for (int i = 1; i < 3; i++) {
+            if (i == 1) tempScore = scores[0];
+            else {
+                score.append("-");
+                tempScore = scores[1];
+            }
+            switch (tempScore) {
                 case 0:
                     score.append("Love");
                     break;
@@ -66,29 +60,28 @@ public class TennisGame1 implements TennisGame {
 
     private StringBuilder getEndGameScore() {
         StringBuilder score;
-        int minusResult = m_score1-m_score2;
-        if (minusResult==1) score = new StringBuilder("Advantage player1");
-        else if (minusResult ==-1) score = new StringBuilder("Advantage player2");
-        else if (minusResult>=2) score = new StringBuilder("Win for player1");
+        int minusResult = scores[0] - scores[1];
+        if (minusResult == 1) score = new StringBuilder("Advantage player1");
+        else if (minusResult == -1) score = new StringBuilder("Advantage player2");
+        else if (minusResult >= 2) score = new StringBuilder("Win for player1");
         else score = new StringBuilder("Win for player2");
         return score;
     }
 
     private StringBuilder getEqualScore() {
         StringBuilder score;
-        switch (m_score1)
-        {
+        switch (scores[0]) {
             case 0:
-                    score = new StringBuilder("Love-All");
+                score = new StringBuilder("Love-All");
                 break;
             case 1:
-                    score = new StringBuilder("Fifteen-All");
+                score = new StringBuilder("Fifteen-All");
                 break;
             case 2:
-                    score = new StringBuilder("Thirty-All");
+                score = new StringBuilder("Thirty-All");
                 break;
             default:
-                    score = new StringBuilder("Deuce");
+                score = new StringBuilder("Deuce");
                 break;
 
         }
