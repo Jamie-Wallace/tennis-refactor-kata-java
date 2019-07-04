@@ -15,11 +15,11 @@ public class TennisGame1 implements TennisGame {
 
     public String getScore() {
         StringBuilder score;
-        if (m_score1==m_score2)
+        if (scoresAreEqual())
         {
             score = getEqualScore();
         }
-        else if (m_score1>=4 || m_score2>=4)
+        else if (atEndGame())
         {
             score = getEndGameScore();
         }
@@ -28,6 +28,14 @@ public class TennisGame1 implements TennisGame {
             score = getGameScore();
         }
         return score.toString();
+    }
+
+    private boolean atEndGame() {
+        return m_score1>=4 || m_score2>=4;
+    }
+
+    private boolean scoresAreEqual() {
+        return m_score1==m_score2;
     }
 
     private StringBuilder getGameScore() {
