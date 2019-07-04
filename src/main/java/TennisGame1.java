@@ -17,7 +17,7 @@ public class TennisGame1 implements TennisGame {
         if (scoresAreEqual()) {
             score = getEqualScore();
         } else if (atEndGame()) {
-            score = getEndGameScore();
+            score = new StringBuilder(getEndGameScore());
         } else {
             score = new StringBuilder(getGameScore());
         }
@@ -36,14 +36,12 @@ public class TennisGame1 implements TennisGame {
         return pointNames[scores[0]] + "-" + pointNames[scores[1]];
     }
 
-    private StringBuilder getEndGameScore() {
-        StringBuilder score;
+    private String getEndGameScore() {
         int minusResult = scores[0] - scores[1];
-        if (minusResult == 1) score = new StringBuilder("Advantage player1");
-        else if (minusResult == -1) score = new StringBuilder("Advantage player2");
-        else if (minusResult >= 2) score = new StringBuilder("Win for player1");
-        else score = new StringBuilder("Win for player2");
-        return score;
+        if (minusResult == 1) return "Advantage player1";
+        else if (minusResult == -1) return "Advantage player2";
+        else if (minusResult >= 2) return "Win for player1";
+        else return "Win for player2";
     }
 
     private StringBuilder getEqualScore() {
