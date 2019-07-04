@@ -1,5 +1,6 @@
 public class TennisGame1 implements TennisGame {
     private int[] scores = {0, 0};
+    private String[] pointNames = {"Love", "Fifteen", "Thirty", "Forty"};
 
     TennisGame1() {
     }
@@ -32,22 +33,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String getGameScore() {
-        return getPointName(scores[0]) + "-" + getPointName(scores[1]);
-    }
-
-    private String getPointName(int pointValue) {
-        switch (pointValue) {
-            case 0:
-                return "Love";
-            case 1:
-                return "Fifteen";
-            case 2:
-                return "Thirty";
-            case 3:
-                return "Forty";
-            default:
-                return "";
-        }
+        return pointNames[scores[0]] + "-" + pointNames[scores[1]];
     }
 
     private StringBuilder getEndGameScore() {
