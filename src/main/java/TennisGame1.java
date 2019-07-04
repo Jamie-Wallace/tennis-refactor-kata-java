@@ -13,17 +13,17 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScores() {
-        StringBuilder score;
+        String score;
         if (isDeuce()) {
-            score = new StringBuilder("Deuce");
+            score = "Deuce";
         } else if (scoresAreEqual()) {
             score = getEqualScore();
         } else if (atEndGame()) {
-            score = new StringBuilder(getEndGameScore());
+            score = getEndGameScore();
         } else {
-            score = new StringBuilder(getGameScore());
+            score = getGameScore();
         }
-        return score.toString();
+        return score;
     }
 
     private boolean atEndGame() {
@@ -50,23 +50,16 @@ public class TennisGame1 implements TennisGame {
         else return "Win for player2";
     }
 
-    private StringBuilder getEqualScore() {
-        StringBuilder score;
+    private String getEqualScore() {
         switch (scores[0]) {
             case 0:
-                score = new StringBuilder("Love-All");
-                break;
+                return "Love-All";
             case 1:
-                score = new StringBuilder("Fifteen-All");
-                break;
+                return  "Fifteen-All";
             case 2:
-                score = new StringBuilder("Thirty-All");
-                break;
+                return "Thirty-All";
             default:
-                score = new StringBuilder("Deuce");
-                break;
-
+                return "Deuce";
         }
-        return score;
     }
 }
