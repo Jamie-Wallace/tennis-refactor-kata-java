@@ -13,17 +13,15 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScores() {
-        String score;
         if (isDeuce()) {
-            score = "Deuce";
+            return "Deuce";
         } else if (scoresAreEqual()) {
-            score = getEqualScore();
+            return getEqualScore();
         } else if (atEndGame()) {
-            score = getEndGameScore();
+            return getEndGameScore();
         } else {
-            score = getGameScore();
+            return getGameScore();
         }
-        return score;
     }
 
     private boolean atEndGame() {
