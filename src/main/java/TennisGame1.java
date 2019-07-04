@@ -45,10 +45,19 @@ public class TennisGame1 implements TennisGame {
 
     private String getEndGameScore() {
         int minusResult = scores[0] - scores[1];
-        if (minusResult == 1) return "Advantage " + players.get(0);
-        else if (minusResult == -1) return "Advantage " + players.get(1);
+
+        if (isAdvantage()) return "Advantage " + getWinningPlayer();
         else if (minusResult >= 2) return "Win for " + players.get(0);
         else return "Win for " + players.get(1);
+    }
+
+    private boolean isAdvantage() {
+        return Math.abs(scores[0] - scores[1]) == 1;
+    }
+
+    private String getWinningPlayer() {
+        if (scores[0] > scores[1]) return players.get(0);
+        else return players.get(1);
     }
 
     private String getEqualScore() {
