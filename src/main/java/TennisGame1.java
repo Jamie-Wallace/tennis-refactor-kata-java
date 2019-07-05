@@ -15,28 +15,8 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScores() {
-        ScoreType scoreType;
-        if (isDeuce()) {
-            scoreType = new DeuceScore();
-        } else if (scoresAreEqual()) {
-            scoreType = new EqualScore(player1);
-        } else if (isAtEndGame()) {
-            scoreType = new EndGameScore(player1, player2);
-        } else {
-            scoreType = new GameScore(player1, player2);
-        }
+        ScoreTypeFactory scoreFactory = new ScoreTypeFactory(player1, player2);
+        ScoreType scoreType = scoreFactory.getScoreType();
         return scoreType.getScore();
-    }
-
-    private boolean scoresAreEqual() {
-        return player1.score == player2.score;
-    }
-
-    private boolean isAtEndGame() {
-        return player1.score >= 4 || player2.score >= 4;
-    }
-
-    private boolean isDeuce() {
-        return (scoresAreEqual() && player1.score >= 3);
     }
 }
