@@ -52,11 +52,8 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String getEndGameScore() {
-        int minusResult = scores[0] - scores[1];
-
         if (isAdvantage()) return "Advantage " + getWinningPlayer();
-        else if (minusResult >= 2) return "Win for " + players.get(0);
-        else return "Win for " + players.get(1);
+        else return "Win for " + getWinningPlayer();
     }
 
     private String getWinningPlayer() {
