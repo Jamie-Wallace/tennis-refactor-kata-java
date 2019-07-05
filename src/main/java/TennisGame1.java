@@ -16,6 +16,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScores() {
+        ScoreType scoreType;
         if (isDeuce()) {
             return "Deuce";
         } else if (scoresAreEqual()) {
@@ -23,7 +24,8 @@ public class TennisGame1 implements TennisGame {
         } else if (isAtEndGame()) {
             return getEndGameScore();
         } else {
-            return getGameScore();
+            scoreType = new GameScore();
+            return scoreType.getScore(scores[0], scores[1]);
         }
     }
 
@@ -41,10 +43,6 @@ public class TennisGame1 implements TennisGame {
 
     private boolean isAdvantage() {
         return Math.abs(scores[0] - scores[1]) == 1;
-    }
-
-    private String getGameScore() {
-        return pointNames[scores[0]] + "-" + pointNames[scores[1]];
     }
 
     private String getEqualScore() {
