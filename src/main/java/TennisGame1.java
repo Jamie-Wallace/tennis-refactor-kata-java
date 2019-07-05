@@ -7,7 +7,7 @@ public class TennisGame1 implements TennisGame {
     private ArrayList<String> players;
 
     TennisGame1(String player1, String player2) {
-        players  = new ArrayList<String>();
+        players = new ArrayList<String>();
         players.add(player1);
         players.add(player2);
     }
@@ -20,17 +20,14 @@ public class TennisGame1 implements TennisGame {
         ScoreType scoreType;
         if (isDeuce()) {
             scoreType = new DeuceScore();
-            return scoreType.getScore(scores[0], scores[1]);
         } else if (scoresAreEqual()) {
             scoreType = new EqualScore();
-            return scoreType.getScore(scores[0], scores[1]);
         } else if (isAtEndGame()) {
             scoreType = new EndGameScore(players.get(0), players.get(1));
-            return scoreType.getScore(scores[0], scores[1]);
         } else {
             scoreType = new GameScore();
-            return scoreType.getScore(scores[0], scores[1]);
         }
+        return scoreType.getScore(scores[0], scores[1]);
     }
 
     private boolean scoresAreEqual() {
