@@ -21,13 +21,13 @@ public class TennisGame1 implements TennisGame {
         if (isDeuce()) {
             scoreType = new DeuceScore();
         } else if (scoresAreEqual()) {
-            scoreType = new EqualScore();
+            scoreType = new EqualScore(scores[0]);
         } else if (isAtEndGame()) {
-            scoreType = new EndGameScore(players.get(0), players.get(1));
+            scoreType = new EndGameScore(scores[0], scores[1], players.get(0), players.get(1));
         } else {
-            scoreType = new GameScore();
+            scoreType = new GameScore(scores[0], scores[1]);
         }
-        return scoreType.getScore(scores[0], scores[1]);
+        return scoreType.getScore();
     }
 
     private boolean scoresAreEqual() {
