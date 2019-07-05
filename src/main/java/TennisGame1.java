@@ -1,19 +1,17 @@
 import GameScores.*;
 
-import java.util.ArrayList;
-
 public class TennisGame1 implements TennisGame {
-    private int[] scores = {0, 0};
-    private ArrayList<String> players;
+    private TennisPlayer player1;
+    private TennisPlayer player2;
 
-    TennisGame1(String player1, String player2) {
-        players = new ArrayList<String>();
-        players.add(player1);
-        players.add(player2);
+    TennisGame1(String player1Name, String player2Name) {
+        player1 = new TennisPlayer(player1Name);
+        player2 = new TennisPlayer(player2Name);
     }
 
     public void wonPoint(String playerName) {
-        scores[players.indexOf(playerName)]++;
+        if (player1.name.equals(playerName)) player1.score++;
+        else player2.score++;
     }
 
     public String getScores() {
@@ -21,24 +19,24 @@ public class TennisGame1 implements TennisGame {
         if (isDeuce()) {
             scoreType = new DeuceScore();
         } else if (scoresAreEqual()) {
-            scoreType = new EqualScore(scores[0]);
+            scoreType = new EqualScore(player1.score);
         } else if (isAtEndGame()) {
-            scoreType = new EndGameScore(scores[0], scores[1], players.get(0), players.get(1));
+            scoreType = new EndGameScore(player1.score, player2.score, player1.name, player2.name);
         } else {
-            scoreType = new GameScore(scores[0], scores[1]);
+            scoreType = new GameScore(player1.score, player2.score);
         }
         return scoreType.getScore();
     }
 
     private boolean scoresAreEqual() {
-        return scores[0] == scores[1];
+        return player1.score == player2.score;
     }
 
     private boolean isAtEndGame() {
-        return scores[0] >= 4 || scores[1] >= 4;
+        return player1.score >= 4 || player2.score >= 4;
     }
 
     private boolean isDeuce() {
-        return (scoresAreEqual() && scores[0] >= 3);
+        return (scoresAreEqual() && player1.score >= 3);
     }
 }
