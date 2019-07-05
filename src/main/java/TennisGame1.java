@@ -1,14 +1,10 @@
-import GameScores.DeuceScore;
-import GameScores.EndGameScore;
-import GameScores.GameScore;
-import GameScores.ScoreType;
+import GameScores.*;
 
 import java.util.ArrayList;
 
 public class TennisGame1 implements TennisGame {
     private int[] scores = {0, 0};
     private ArrayList<String> players;
-    private String[] pointNames = {"Love", "Fifteen", "Thirty", "Forty"};
 
     TennisGame1(String player1, String player2) {
         players  = new ArrayList<String>();
@@ -26,7 +22,8 @@ public class TennisGame1 implements TennisGame {
             scoreType = new DeuceScore();
             return scoreType.getScore(scores[0], scores[1]);
         } else if (scoresAreEqual()) {
-            return getEqualScore();
+            scoreType = new EqualScore();
+            return scoreType.getScore(scores[0], scores[1]);
         } else if (isAtEndGame()) {
             scoreType = new EndGameScore(players.get(0), players.get(1));
             return scoreType.getScore(scores[0], scores[1]);
@@ -46,9 +43,5 @@ public class TennisGame1 implements TennisGame {
 
     private boolean isDeuce() {
         return (scoresAreEqual() && scores[0] >= 3);
-    }
-
-    private String getEqualScore() {
-        return  pointNames[scores[0]] + "-All";
     }
 }
