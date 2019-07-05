@@ -1,10 +1,10 @@
 package GameScores;
 
 public class EndGameScore extends ScoreType {
-    private TennisPlayer player1;
-    private TennisPlayer player2;
+    private final TennisPlayer player1;
+    private final TennisPlayer player2;
 
-    public EndGameScore(TennisPlayer player1, TennisPlayer player2) {
+    EndGameScore(TennisPlayer player1, TennisPlayer player2) {
         this.player1 = player1;
         this.player2 = player2;
     }

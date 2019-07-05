@@ -1,12 +1,12 @@
 import GameScores.*;
 
 public class TennisGame1 implements TennisGame {
-    private TennisPlayer player1;
-    private TennisPlayer player2;
+    private final TennisPlayer player1;
+    private final TennisPlayer player2;
 
-    TennisGame1(String player1Name, String player2Name) {
-        player1 = new TennisPlayer(player1Name);
-        player2 = new TennisPlayer(player2Name);
+    TennisGame1() {
+        player1 = new TennisPlayer("player1");
+        player2 = new TennisPlayer("player2");
     }
 
     public void wonPoint(String playerName) {

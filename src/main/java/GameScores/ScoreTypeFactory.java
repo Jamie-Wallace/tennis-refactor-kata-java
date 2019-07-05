@@ -1,8 +1,8 @@
 package GameScores;
 
 public class ScoreTypeFactory {
-    private TennisPlayer player1;
-    private TennisPlayer player2;
+    private final TennisPlayer player1;
+    private final TennisPlayer player2;
 
     public ScoreTypeFactory(TennisPlayer player1, TennisPlayer player2)
     {
