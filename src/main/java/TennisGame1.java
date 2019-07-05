@@ -1,3 +1,7 @@
+import GameScores.EndGameScore;
+import GameScores.GameScore;
+import GameScores.ScoreType;
+
 import java.util.ArrayList;
 
 public class TennisGame1 implements TennisGame {
@@ -22,7 +26,8 @@ public class TennisGame1 implements TennisGame {
         } else if (scoresAreEqual()) {
             return getEqualScore();
         } else if (isAtEndGame()) {
-            return getEndGameScore();
+            scoreType = new EndGameScore(players.get(0), players.get(1));
+            return scoreType.getScore(scores[0], scores[1]);
         } else {
             scoreType = new GameScore();
             return scoreType.getScore(scores[0], scores[1]);
