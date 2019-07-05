@@ -20,27 +20,35 @@ public class TennisGame1 implements TennisGame {
             return "Deuce";
         } else if (scoresAreEqual()) {
             return getEqualScore();
-        } else if (atEndGame()) {
+        } else if (isAtEndGame()) {
             return getEndGameScore();
         } else {
             return getGameScore();
         }
     }
 
-    private boolean atEndGame() {
-        return scores[0] >= 4 || scores[1] >= 4;
-    }
-
     private boolean scoresAreEqual() {
         return scores[0] == scores[1];
+    }
+
+    private boolean isAtEndGame() {
+        return scores[0] >= 4 || scores[1] >= 4;
     }
 
     private boolean isDeuce() {
         return (scoresAreEqual() && scores[0] >= 3);
     }
 
+    private boolean isAdvantage() {
+        return Math.abs(scores[0] - scores[1]) == 1;
+    }
+
     private String getGameScore() {
         return pointNames[scores[0]] + "-" + pointNames[scores[1]];
+    }
+
+    private String getEqualScore() {
+        return  pointNames[scores[0]] + "-All";
     }
 
     private String getEndGameScore() {
@@ -51,16 +59,8 @@ public class TennisGame1 implements TennisGame {
         else return "Win for " + players.get(1);
     }
 
-    private boolean isAdvantage() {
-        return Math.abs(scores[0] - scores[1]) == 1;
-    }
-
     private String getWinningPlayer() {
         if (scores[0] > scores[1]) return players.get(0);
         else return players.get(1);
-    }
-
-    private String getEqualScore() {
-        return  pointNames[scores[0]] + "-All";
     }
 }
