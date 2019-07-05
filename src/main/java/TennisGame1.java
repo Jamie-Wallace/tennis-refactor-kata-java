@@ -19,11 +19,11 @@ public class TennisGame1 implements TennisGame {
         if (isDeuce()) {
             scoreType = new DeuceScore();
         } else if (scoresAreEqual()) {
-            scoreType = new EqualScore(player1.score);
+            scoreType = new EqualScore(player1);
         } else if (isAtEndGame()) {
-            scoreType = new EndGameScore(player1.score, player2.score, player1.name, player2.name);
+            scoreType = new EndGameScore(player1, player2);
         } else {
-            scoreType = new GameScore(player1.score, player2.score);
+            scoreType = new GameScore(player1, player2);
         }
         return scoreType.getScore();
     }
