@@ -1,3 +1,4 @@
+import GameScores.DeuceScore;
 import GameScores.EndGameScore;
 import GameScores.GameScore;
 import GameScores.ScoreType;
@@ -22,7 +23,8 @@ public class TennisGame1 implements TennisGame {
     public String getScores() {
         ScoreType scoreType;
         if (isDeuce()) {
-            return "Deuce";
+            scoreType = new DeuceScore();
+            return scoreType.getScore(scores[0], scores[1]);
         } else if (scoresAreEqual()) {
             return getEqualScore();
         } else if (isAtEndGame()) {
@@ -46,21 +48,7 @@ public class TennisGame1 implements TennisGame {
         return (scoresAreEqual() && scores[0] >= 3);
     }
 
-    private boolean isAdvantage() {
-        return Math.abs(scores[0] - scores[1]) == 1;
-    }
-
     private String getEqualScore() {
         return  pointNames[scores[0]] + "-All";
-    }
-
-    private String getEndGameScore() {
-        if (isAdvantage()) return "Advantage " + getWinningPlayer();
-        else return "Win for " + getWinningPlayer();
-    }
-
-    private String getWinningPlayer() {
-        if (scores[0] > scores[1]) return players.get(0);
-        else return players.get(1);
     }
 }
